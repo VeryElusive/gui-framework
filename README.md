@@ -3,6 +3,8 @@
 
 Written using libutil, my friend's runtime library. [Check it out.](https://github.com/welikethestock/libutil)
 
+[(Here's a ittle showcase video)](https://www.youtube.com/watch?v=sJx26V1jmUI)
+
 ## Features:
  - Object oriented
  - Keybind selector for checkboxes, sliders and dropdowns
