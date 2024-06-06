@@ -11,8 +11,6 @@
 #include "libutil/common/strlib.h"
 #include "libutil/libutil/math/int.h"
 
-using namespace Cheat;
-
 int GUI::DPIScale = 2;
 
 void GUI::CForm::Render(const float TimeSinceLastFrame)
@@ -217,7 +215,7 @@ void GUI::CForm::RenderTabs(const float TimeSinceLastFrame, const float Alpha)
 
 GUI::CTab *GUI::CForm::CreateNewTab(const wchar_t *Name)
 {
-	CTab NewTab(Name, Cheat::Datatypes::Color(DIM_ITEM_COLOR));
+	CTab NewTab(Name, Datatypes::Color(DIM_ITEM_COLOR));
 	LibUtil_Vector_PushBack(&Tabs, &NewTab);
 
 	return (CTab *)LibUtil_Vector_GetElement(&Tabs, Tabs.Count - 1);
@@ -226,7 +224,7 @@ GUI::CTab *GUI::CForm::CreateNewTab(const wchar_t *Name)
 GUI::CForm::CForm(const int X, const int Y, 
 				  const int W, const int H, 
 				  const wchar_t *Name, 
-				  Cheat::Datatypes::Color Col, 
+				  Datatypes::Color Col, 
 				  const bool Open, 
 				  const bool AllowResizing, 
 				  const int MinW, const int MinH,
