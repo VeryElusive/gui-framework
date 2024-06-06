@@ -1,7 +1,7 @@
 # An object oriented GUI framework, with heavy emphasis on modularity.
 ## Project linecount total: 4,116 lines.
 
-Written using libutil, my friend's runtime library (thx @welikethestocks !!)
+Written using libutil, my friend's runtime library. [Check it out.](https://github.com/welikethestock/libutil)
 
 ## Features:
  - Object oriented
@@ -10,6 +10,7 @@ Written using libutil, my friend's runtime library (thx @welikethestocks !!)
  - Menu movable by dragging
  - Menu resizing by dragging
  - DPI scaling
+ - Built to be easy to modify
 
 ## Menu items:
  - Checkboxes
@@ -27,7 +28,7 @@ Written using libutil, my friend's runtime library (thx @welikethestocks !!)
 ### Creating a form:
 ```cpp
 
-static Cheat::GUI::CForm Form(
+static GUI::CForm Form(
             DEFAULT_POSITION_X, DEFAULT_POSITION_Y, 
             DEFAULT_SIZE_X, DEFAULT_SIZE_Y, 
             L"Form name", ACCENT_COLOR, 
@@ -51,7 +52,7 @@ static Cheat::GUI::CForm Form(
 
 ### Creating a group:
 ```cpp
-  const CGroup *Group = Subtab->CreateGroup(L"Group name", HORIZONTAL_SIZE_PERCENT, VERTICAL_SIZE_PERCENT);
+  const GUI::CGroup *Group = Subtab->CreateGroup(L"Group name", HORIZONTAL_SIZE_PERCENT, VERTICAL_SIZE_PERCENT);
 ```
 
 ### Creating a checkbox:
@@ -81,6 +82,7 @@ static Cheat::GUI::CForm Form(
   wchar_t *DropdownItems[] = {(L"One"), (L"two"), (L"Three")};
   Group->AddDropdown(L"Dropdown name", &Dropdown, &DropdownKeybind, DropdownItems, ITEMS_COUNT);
 
+  // no keybind selector.
   Group->AddDropdown(L"Dropdown name", &Dropdown, NULL, DropdownItems, ITEMS_COUNT);
 ```
 
