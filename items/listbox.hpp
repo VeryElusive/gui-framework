@@ -30,6 +30,8 @@ namespace Cheat
 					}
 				}
 
+			void Destroy();
+
 			bool Render(int RenderPositionX, int& RenderPositionY,
 						const int GroupSizeX, const int GroupSizeY,
                         const float TimeSinceLastFrame, const float Alpha, 

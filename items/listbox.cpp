@@ -27,6 +27,11 @@ bool GUI::CListbox::Render(int RenderPositionX, int& RenderPositionY,
 	);
 }
 
+void GUI::CListbox::Destroy()
+{
+	LibUtil_Heap_Free(Elements);
+}
+
 void RenderListbox(wchar_t *const Name,
 					int RenderPositionX, int& RenderPositionY,
 					const int SizeX, const int SizeY,

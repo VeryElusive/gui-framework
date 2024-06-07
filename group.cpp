@@ -159,6 +159,9 @@ void GUI::CGroup::Destroy()
         case EItemType::MULTISELECT:
             ((CMultiSelect *)Item)->Destroy();
             break;
+        case EItemType::LIST_BOX:
+            ((CListbox *)Item)->Destroy();
+            break;
         default:
             break;
         }
