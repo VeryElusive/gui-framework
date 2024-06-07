@@ -25,7 +25,7 @@ Written using libutil, my friend's runtime library. [Check it out.](https://gith
  - Text inputs
 
 
-# USAGE:
+# Usage:
 
 ### Creating a form:
 ```cpp
@@ -128,4 +128,9 @@ static GUI::CForm Form(
 ```cpp
   static char Buffer[32] = {'\0'};
   Group->AddTextInput(L"Text input name", Buffer, BUFFER_SIZE);
+```
+
+### Un-allocating all allocated heap memory:
+```cpp
+  Form->Destroy()
 ```
