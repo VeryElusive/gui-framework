@@ -85,11 +85,13 @@ void GUI::CSubTab::RenderGroups(const int FormSizeX, const int FormSizeY,
 
 	const auto StartX = FormPositionX + SIDE_BAR_SIZE + MARGIN;
 
-    int RenderPositionX = StartX;
-    int RenderPositionY = FormPositionY + TOP_BAR_SIZE + MARGIN;
+    	int RenderPositionX = StartX;
+    	int RenderPositionY = FormPositionY + TOP_BAR_SIZE + MARGIN;
+	const int BackupRenderPositionY = FormPositionY + TOP_BAR_SIZE + MARGIN;
 
+	int SlotX = 0;
 	int LineNumber = 0;
-	int GroupSlotsX = *(int *)LibUtil_Vector_GetElement(&GroupSlots, LineNumber);
+	int MaxSlotsX = *(int *)LibUtil_Vector_GetElement(&GroupSlots, LineNumber);
 	for(int i = 0; i < Groups.Count; i++)
 	{
 		const auto Group = (CGroup *)LibUtil_Vector_GetElement(&Groups, i);
@@ -98,18 +100,37 @@ void GUI::CSubTab::RenderGroups(const int FormSizeX, const int FormSizeY,
 			continue;
 		}
 
+		int SizeY = 0;
+		if(LineNumber != 0)
+		{
+			int NumGroups = 0;
+			for(int i = 0; i < LineNumber; i++)
+			{
+				const auto Group = (CGroup *)LibUtil_Vector_GetElement(&Groups, NumGroups + SlotX);
+				SizeY += (int)((FormSizeY - TOP_BAR_SIZE  - MARGIN *  (GroupSlots.Count   + 1)) * Group->SizePercentageY);
+
+				NumGroups += *(int *)LibUtil_Vector_GetElement(&GroupSlots, i);
+			}
+		}
+
+		SlotX += 1;
+
+		RenderPositionY = BackupRenderPositionY + SizeY + MARGIN * LineNumber;
+
 		if(Group->Render(RenderPositionX, RenderPositionY,
 					FormSizeX, FormSizeY,
-					GroupSlotsX, GroupSlots.Count,
+					MaxSlotsX, GroupSlots.Count,
 					TimeSinceLastFrame, Alpha, 
 					FormAccent, DPIScale, 
 					AllowInput, FocusItem))
 		{
-			RenderPositionX = StartX;
-			LineNumber += 1;
+			RenderPositionX 	= StartX;
+			LineNumber 		+= 1;
+			SlotX 		= 0;
+
 			if(LineNumber < GroupSlots.Count)
 			{
-				GroupSlotsX = *(int *)LibUtil_Vector_GetElement(&GroupSlots, LineNumber);
+				MaxSlotsX = *(int *)LibUtil_Vector_GetElement(&GroupSlots, LineNumber);
 			}
 		}
 	}
